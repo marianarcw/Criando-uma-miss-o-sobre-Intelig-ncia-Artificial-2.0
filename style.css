@@ -1,157 +1,470 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 
 :root {
-    --cor-fundo: #01080E;
-    --cor-principal: #0B0D20;
-    --cor-secundaria: #212333;
-    --cor-destaque: #2BDEFD;
-    --cor-texto: #D7F9FF;
+    --preto: #050505;
+    --preto-2: #0d0d0d;
+    --cinza: #181818;
+    --cinza-claro: #a7a7a7;
+
+    --branco: #f5f5f5;
+
+    --azul: #2BDEFD;
+    --verde: #7cff6b;
+    --roxo: #8c52ff;
 }
 
 
+/* =========================
+   RESET
+========================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
+    background: #020202;
+
+    color: var(--branco);
 
     font-family: 'Inter', sans-serif;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+/* =========================
+   REVISTA
+========================= */
+
+.revista {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: auto;
+
+    background: var(--preto);
+}
+
+
+/* =========================
+   CAPA
+========================= */
+
+.capa {
     min-height: 100vh;
 
-    margin: 0;
-    padding: 20px;
-}
+    padding: 30px 45px;
 
-
-.caixa-principal {
-    background-color: var(--cor-principal);
-
-    width: 90%;
-    max-width: 900px;
-
-    text-align: center;
-
-    padding: 30px;
-
-    border-radius: 15px;
-
-    box-shadow: 0 0 30px rgba(43, 222, 253, 0.15);
-}
-
-
-h1,
-.caixa-perguntas,
-.caixa-resultado {
-    font-family: 'Chakra Petch', sans-serif;
-}
-
-
-h1 {
-    color: var(--cor-destaque);
-
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-
-/* Tela inicial */
-
-.tela-inicial {
-    font-size: 17px;
-    line-height: 1.7;
-}
-
-
-.tela-inicial p {
-    margin-bottom: 30px;
-}
-
-
-/* Perguntas */
-
-.caixa-perguntas {
-    font-size: 20px;
-    line-height: 1.5;
-
-    margin-bottom: 30px;
-}
-
-
-/* Alternativas */
-
-.caixa-alternativas {
     display: flex;
+
     flex-direction: column;
 
-    gap: 10px;
+    justify-content: space-between;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(43, 222, 253, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(140, 82, 255, 0.13),
+            transparent 30%
+        ),
+        #050505;
 }
 
 
-/* Botões */
+.capa::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border: 1px solid rgba(43, 222, 253, 0.2);
+
+    border-radius: 50%;
+
+    right: -180px;
+    bottom: -150px;
+}
+
+
+.capa::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border: 1px solid rgba(124, 255, 107, 0.15);
+
+    border-radius: 50%;
+
+    right: 20px;
+    bottom: 40px;
+}
+
+
+/* topo da capa */
+
+.capa-topo,
+.capa-rodape {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: var(--cinza-claro);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.capa-conteudo {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+}
+
+
+.categoria,
+.etiqueta {
+    color: var(--azul);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+
+.capa h1 {
+    font-family: 'Chakra Petch', sans-serif;
+
+    font-size: clamp(55px, 9vw, 110px);
+
+    line-height: 0.85;
+
+    font-weight: 700;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 35px;
+}
+
+
+.capa h1 span {
+    color: var(--azul);
+}
+
+
+.subtitulo {
+    max-width: 550px;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    color: #c8c8c8;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
 
 button {
-    background-color: var(--cor-secundaria);
-
-    color: var(--cor-texto);
-
-    border: 2px solid var(--cor-destaque);
-
-    border-radius: 15px;
-
-    padding: 15px;
-
-    font-size: 16px;
+    border: none;
 
     cursor: pointer;
 
-    transition: 0.3s;
+    font-family: 'Inter', sans-serif;
+
+    transition: 0.25s;
 }
 
 
-button:hover {
-    background-color: var(--cor-destaque);
+.iniciar-btn,
+.novamente-btn {
+    background: var(--azul);
 
-    color: var(--cor-secundaria);
+    color: #041015;
 
-    transform: scale(1.02);
+    padding: 16px 25px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    border-radius: 0;
 }
 
 
-/* Botão iniciar */
+.iniciar-btn:hover,
+.novamente-btn:hover {
+    background: var(--branco);
 
-.iniciar-btn {
-    background-color: var(--cor-destaque);
+    transform: translateY(-3px);
 
-    color: var(--cor-secundaria);
-
-    font-weight: bold;
-
-    padding: 15px 40px;
+    box-shadow: 0 10px 30px rgba(43, 222, 253, 0.2);
 }
 
 
-.iniciar-btn:hover {
-    background-color: var(--cor-texto);
+/* =========================
+   INTRODUÇÃO
+========================= */
 
-    color: var(--cor-principal);
+.introducao {
+    min-height: 700px;
+
+    padding: 50px;
+
+    background: #f1f1ed;
+
+    color: #111;
+
+    position: relative;
 }
 
 
-/* Resultado */
+.numero-pagina {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #777;
+
+    margin-bottom: 80px;
+}
+
+
+.introducao-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    max-width: 950px;
+
+    margin: auto;
+}
+
+
+.introducao .etiqueta {
+    color: #555;
+}
+
+
+.introducao h2 {
+    font-family: 'Chakra Petch', sans-serif;
+
+    font-size: clamp(45px, 6vw, 75px);
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+}
+
+
+.texto-introducao {
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #444;
+}
+
+
+.texto-introducao p {
+    margin-bottom: 20px;
+}
+
+
+.texto-introducao .iniciar-btn {
+    margin-top: 15px;
+}
+
+
+/* =========================
+   JOGO
+========================= */
+
+.jogo {
+    min-height: 700px;
+
+    padding: 50px;
+
+    background: var(--preto-2);
+}
+
+
+.cabecalho-jogo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 30px;
+}
+
+
+.cabecalho-jogo h2 {
+    font-family: 'Chakra Petch', sans-serif;
+
+    font-size: 50px;
+
+    line-height: 1;
+}
+
+
+.pagina {
+    font-family: 'Chakra Petch', sans-serif;
+
+    font-size: 50px;
+
+    color: var(--azul);
+}
+
+
+.linha {
+    height: 1px;
+
+    background: #333;
+
+    margin-bottom: 60px;
+}
+
+
+.caixa-perguntas {
+    max-width: 850px;
+
+    margin: 0 auto 50px;
+
+    font-family: 'Chakra Petch', sans-serif;
+
+    font-size: clamp(28px, 4vw, 45px);
+
+    font-weight: 500;
+
+    line-height: 1.1;
+
+    text-align: left;
+}
+
+
+.caixa-alternativas {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+
+.caixa-alternativas button {
+    background: transparent;
+
+    border: 1px solid #444;
+
+    color: var(--branco);
+
+    padding: 25px;
+
+    min-height: 130px;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+.caixa-alternativas button::before {
+    content: "→";
+
+    color: var(--azul);
+
+    font-size: 20px;
+
+    margin-right: 12px;
+}
+
+
+.caixa-alternativas button:hover {
+    background: var(--azul);
+
+    color: #061015;
+
+    border-color: var(--azul);
+
+    transform: translateY(-5px);
+}
+
+
+.caixa-alternativas button:hover::before {
+    color: #061015;
+}
+
+
+/* =========================
+   RESULTADO
+========================= */
 
 .caixa-resultado {
     display: none;
 
-    margin-top: 30px;
+    min-height: 700px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071116,
+            #0b0b0b
+        );
+
+    padding: 35px 50px;
+
+    position: relative;
+
+    overflow: hidden;
 }
 
 
@@ -160,29 +473,160 @@ button:hover {
 }
 
 
+.caixa-resultado::before {
+    content: "2049";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -80px;
+
+    font-family: 'Chakra Petch', sans-serif;
+
+    font-size: 250px;
+
+    font-weight: 700;
+
+    color: rgba(43, 222, 253, 0.04);
+}
+
+
+.resultado-topo {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #777;
+
+    border-bottom: 1px solid #333;
+
+    padding-bottom: 20px;
+}
+
+
+.resultado-conteudo {
+    max-width: 800px;
+
+    margin: 100px auto;
+}
+
+
+.resultado-conteudo h2 {
+    font-family: 'Chakra Petch', sans-serif;
+
+    color: var(--azul);
+
+    font-size: clamp(55px, 8vw, 100px);
+
+    line-height: 0.9;
+
+    margin-bottom: 45px;
+}
+
+
 .texto-resultado {
-    font-size: 18px;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
 
-    margin-bottom: 25px;
+    color: #d0d0d0;
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    margin-bottom: 45px;
 }
 
 
-/* Botão jogar novamente */
+.resultado-rodape {
+    position: absolute;
 
-.novamente-btn {
-    background-color: var(--cor-destaque);
+    bottom: 30px;
+    left: 50px;
+    right: 50px;
 
-    color: var(--cor-secundaria);
+    padding-top: 20px;
 
-    font-weight: bold;
+    border-top: 1px solid #333;
 
-    padding: 12px 25px;
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
 }
 
 
-.novamente-btn:hover {
-    background-color: var(--cor-texto);
+/* =========================
+   RESPONSIVO
+========================= */
 
-    color: var(--cor-principal);
+@media (max-width: 700px) {
+
+    .capa {
+        padding: 25px;
+    }
+
+
+    .capa h1 {
+        font-size: 60px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .introducao,
+    .jogo,
+    .caixa-resultado {
+        padding: 30px 25px;
+    }
+
+
+    .introducao-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    .introducao {
+        min-height: auto;
+
+        padding-bottom: 60px;
+    }
+
+
+    .caixa-alternativas {
+        grid-template-columns: 1fr;
+    }
+
+
+    .cabecalho-jogo h2 {
+        font-size: 40px;
+    }
+
+
+    .pagina {
+        font-size: 40px;
+    }
+
+
+    .caixa-perguntas {
+        font-size: 30px;
+    }
+
+
+    .resultado-conteudo {
+        margin: 70px auto;
+    }
+
+
+    .resultado-rodape {
+        left: 25px;
+        right: 25px;
+    }
+
 }

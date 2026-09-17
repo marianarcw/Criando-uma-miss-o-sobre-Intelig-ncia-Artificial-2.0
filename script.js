@@ -3,7 +3,7 @@
 // ==========================================
 
 const nomes = [
-    "Mariana",
+    "Fernanda",
     "Giuliana",
     "Maria Eduarda",
     "Marcelo",
@@ -13,18 +13,15 @@ const nomes = [
 ];
 
 
-// ==========================================
-// FUNÇÃO PARA SORTEAR
-// ==========================================
-
 function aleatorio(lista) {
-    const posicao = Math.floor(Math.random() * lista.length);
+
+    const posicao =
+        Math.floor(Math.random() * lista.length);
 
     return lista[posicao];
 }
 
 
-// Sorteia o nome do personagem
 const nome = aleatorio(nomes);
 
 
@@ -186,8 +183,14 @@ const perguntas = [
 
 
 // ==========================================
-// ELEMENTOS DO HTML
+// ELEMENTOS
 // ==========================================
+
+const telaInicial =
+    document.querySelector(".tela-inicial");
+
+const botoesIniciar =
+    document.querySelectorAll(".iniciar-btn");
 
 const caixaPerguntas =
     document.querySelector(".caixa-perguntas");
@@ -201,14 +204,11 @@ const caixaResultado =
 const textoResultado =
     document.querySelector(".texto-resultado");
 
-const telaInicial =
-    document.querySelector(".tela-inicial");
-
-const botaoIniciar =
-    document.querySelector(".iniciar-btn");
-
 const botaoJogarNovamente =
     document.querySelector(".novamente-btn");
+
+const jogo =
+    document.querySelector(".jogo");
 
 
 // ==========================================
@@ -223,7 +223,7 @@ let historiaFinal = "";
 
 
 // ==========================================
-// SUBSTITUI O "VOCÊ" PELO NOME
+// NOME
 // ==========================================
 
 function substituiNome() {
@@ -231,13 +231,16 @@ function substituiNome() {
     for (const pergunta of perguntas) {
 
         pergunta.enunciado =
-            pergunta.enunciado.replace(/você/gi, nome);
+            pergunta.enunciado.replace(
+                /você/gi,
+                nome
+            );
     }
 }
 
 
 // ==========================================
-// MOSTRA A PERGUNTA
+// MOSTRAR PERGUNTA
 // ==========================================
 
 function mostraPergunta() {
@@ -250,7 +253,8 @@ function mostraPergunta() {
     }
 
 
-    perguntaAtual = perguntas[atual];
+    perguntaAtual =
+        perguntas[atual];
 
 
     caixaPerguntas.textContent =
@@ -265,49 +269,52 @@ function mostraPergunta() {
 
 
 // ==========================================
-// MOSTRA AS ALTERNATIVAS
+// ALTERNATIVAS
 // ==========================================
 
 function mostraAlternativas() {
 
     for (const alternativa of perguntaAtual.alternativas) {
 
-        const botaoAlternativas =
+        const botao =
             document.createElement("button");
 
 
-        botaoAlternativas.textContent =
+        botao.textContent =
             alternativa.texto;
 
 
-        botaoAlternativas.addEventListener(
+        botao.addEventListener(
             "click",
-            function () {
+            () => {
 
-                respostaSelecionada(alternativa);
+                respostaSelecionada(
+                    alternativa
+                );
 
             }
         );
 
 
-        caixaAlternativas.appendChild(
-            botaoAlternativas
-        );
+        caixaAlternativas.appendChild(botao);
     }
 }
 
 
 // ==========================================
-// RESPOSTA SELECIONADA
+// RESPOSTA
 // ==========================================
 
 function respostaSelecionada(opcaoSelecionada) {
 
     const afirmacao =
-        aleatorio(opcaoSelecionada.afirmacao);
+        aleatorio(
+            opcaoSelecionada.afirmacao
+        );
 
 
-    historiaFinal += afirmacao + " ";
+    historiaFinal +=
+        afirmacao + " ";
 
 
     atual++;
@@ -318,7 +325,7 @@ function respostaSelecionada(opcaoSelecionada) {
 
 
 // ==========================================
-// MOSTRA O RESULTADO
+// RESULTADO
 // ==========================================
 
 function mostraResultado() {
@@ -331,15 +338,23 @@ function mostraResultado() {
         historiaFinal;
 
 
-    caixaAlternativas.textContent = "";
+    caixaAlternativas.textContent =
+        "";
 
 
-    caixaResultado.classList.add("mostrar");
+    caixaResultado.classList.add(
+        "mostrar"
+    );
+
+
+    caixaResultado.scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 
 // ==========================================
-// INICIA O JOGO
+// INICIAR
 // ==========================================
 
 function iniciaJogo() {
@@ -349,10 +364,19 @@ function iniciaJogo() {
     historiaFinal = "";
 
 
-    telaInicial.style.display = "none";
+    if (telaInicial) {
+        telaInicial.style.display = "none";
+    }
 
 
-    caixaResultado.classList.remove("mostrar");
+    caixaResultado.classList.remove(
+        "mostrar"
+    );
+
+
+    jogo.scrollIntoView({
+        behavior: "smooth"
+    });
 
 
     mostraPergunta();
@@ -360,7 +384,7 @@ function iniciaJogo() {
 
 
 // ==========================================
-// JOGA NOVAMENTE
+// JOGAR NOVAMENTE
 // ==========================================
 
 function jogaNovamente() {
@@ -370,20 +394,33 @@ function jogaNovamente() {
     historiaFinal = "";
 
 
-    caixaResultado.classList.remove("mostrar");
+    caixaResultado.classList.remove(
+        "mostrar"
+    );
 
 
     mostraPergunta();
+
+
+    jogo.scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 
 // ==========================================
-// BOTÕES
+// EVENTOS
 // ==========================================
 
-botaoIniciar.addEventListener(
-    "click",
-    iniciaJogo
+botoesIniciar.forEach(
+    botao => {
+
+        botao.addEventListener(
+            "click",
+            iniciaJogo
+        );
+
+    }
 );
 
 
@@ -394,7 +431,7 @@ botaoJogarNovamente.addEventListener(
 
 
 // ==========================================
-// EXECUTA A SUBSTITUIÇÃO DO NOME
+// INICIALIZA
 // ==========================================
 
 substituiNome();
