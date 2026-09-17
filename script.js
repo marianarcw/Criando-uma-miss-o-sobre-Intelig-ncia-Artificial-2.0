@@ -3,7 +3,7 @@
 // ==========================================
 
 const nomes = [
-    "Fernanda",
+    "Mariana",
     "Giuliana",
     "Maria Eduarda",
     "Marcelo",
